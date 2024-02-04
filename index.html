@@ -19,6 +19,22 @@
     polaris-chip {
       margin: 16px;
     }
+    my-card {
+      --card-background: green;
+      --card-border: 1px solid red;
+      --card-padding: 16px;
+      --card-font-family: 'Arial';
+      --card-title-color: black;
+    }
+
+    my-card {
+      display: block;
+      background-color: var(--card-background);
+      border: var(--card-border);
+      padding: var(--card-padding);
+      font-family: var(--card-font-family);
+      color: var(--card-title-color);
+    }
   </style>
   <title>polaris-chip / my-card</title>
 </head>
@@ -31,14 +47,16 @@
   <polaris-chip title="Spors are the only thing that matter"></polaris-chip>
   <polaris-chip title="Grants and Donations"></polaris-chip>
   <!-- this is going to take the tag and change the title -->
-  
-
-  <h1>my-card</h1>
-  <my-card></my-card>
-
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+
+  <h1>The Card Assignment</h1>
+  <my-card header="He Eepy" title="Sleepy Dog" imageSrc ="https://media1.tenor.com/m/Ro3kqv2CPmYAAAAd/sleeping-sleep.gif" par="This dog is taking a very well deserved nap. He likes to chill."></my-card>
+  <my-card header="This is very tragic" style="--card-background: orange; --card-title-color: green;" title="The Crying Officer" imageSrc="https://media1.tenor.com/m/GhUChZCIDs0AAAAd/british-cop-screaming-screaming.gif" par="This officer is devastated. I don't know why but hopefully he chills out."></my-card>
+  <my-card header="He kinda chill though" title="Hard Gif of Woody" style="--card-background: blue; --card-title-color: orange;" par="I don't think this is in the toy story movie. However, woody is chilling." imageSrc="https://media1.tenor.com/m/hbgP1XRYo1UAAAAC/bornskywalker-dap-me-up.gif"></my-card>
+  <my-card header="Creature" title="This animal is up to no good" style="--card-background: pink; --card-title-color: black;" imageSrc ="https://media.tenor.com/UpuNwwksW6kAAAAM/bigfoot-jinx-jinx.gif" par="This is Jinx, a very mischevious cat. She seems to not like hair bands."></my-card>
+  <my-card header="Anger" title="Spongebob and The Dime" style="--card-background: purple; --card-title-color: black;" imageSrc ="https://media.tenor.com/0wB7gjRtyxAAAAAM/spongebob-mr-krabs.gif" par="Spongebob is upset with Mr. Krabs. It seems that Mr. Krabs is accusing Squidward of stealing his first dime. I sure hope he finds it."></my-card>
 </body>
 
 </html>
