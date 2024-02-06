@@ -11,8 +11,8 @@
     :root,
     html,
     body {
-      margin: 0;
-      padding: 0;
+      margin: 8px;
+      padding: 8px;
       font-family: sans-serif;
       background-color: #ededed;
     }
@@ -21,7 +21,7 @@
     }
     my-card {
       --card-background: green;
-      --card-border: 1px solid red;
+      --card-border: 4px solid red;
       --card-padding: 16px;
       --card-font-family: 'Arial';
       --card-title-color: black;
@@ -52,11 +52,35 @@
   <script type="module" src="./src/my-card.js"></script>
 
   <h1>The Card Assignment</h1>
+
+  <div class="control-wrapper">
+    <button class="duplicate">Clone Card</button>
+    <button id="changetitle">Change title</button>
+    <button id="changeimage">Change image</button>
+    <button id="changebg">Change bg</button>
+    <button id="delete">Delete card</button>
+  </div>
+
+<div id="cardlist">
   <my-card header="He Eepy" title="Sleepy Dog" imageSrc ="https://media1.tenor.com/m/Ro3kqv2CPmYAAAAd/sleeping-sleep.gif" par="This dog is taking a very well deserved nap. He likes to chill."></my-card>
   <my-card header="This is very tragic" style="--card-background: orange; --card-title-color: green;" title="The Crying Officer" imageSrc="https://media1.tenor.com/m/GhUChZCIDs0AAAAd/british-cop-screaming-screaming.gif" par="This officer is devastated. I don't know why but hopefully he chills out."></my-card>
   <my-card header="He kinda chill though" title="Hard Gif of Woody" style="--card-background: blue; --card-title-color: orange;" par="I don't think this is in the toy story movie. However, woody is chilling." imageSrc="https://media1.tenor.com/m/hbgP1XRYo1UAAAAC/bornskywalker-dap-me-up.gif"></my-card>
-  <my-card header="Creature" title="This animal is up to no good" style="--card-background: pink; --card-title-color: black;" imageSrc ="https://media.tenor.com/UpuNwwksW6kAAAAM/bigfoot-jinx-jinx.gif" par="This is Jinx, a very mischevious cat. She seems to not like hair bands."></my-card>
-  <my-card header="Anger" title="Spongebob and The Dime" style="--card-background: purple; --card-title-color: black;" imageSrc ="https://media.tenor.com/0wB7gjRtyxAAAAAM/spongebob-mr-krabs.gif" par="Spongebob is upset with Mr. Krabs. It seems that Mr. Krabs is accusing Squidward of stealing his first dime. I sure hope he finds it."></my-card>
+  <my-card header="Creature" title="This animal is up to no good" style="--card-background: pink; --card-title-color: aquamarine;" imageSrc ="https://media.tenor.com/UpuNwwksW6kAAAAM/bigfoot-jinx-jinx.gif" par="This is Jinx, a very mischevious cat. She seems to not like hair bands."></my-card>
+  <my-card header="Anger" title="Spongebob and The Dime" style="--card-background: purple; --card-title-color: white;" imageSrc ="https://media.tenor.com/0wB7gjRtyxAAAAAM/spongebob-mr-krabs.gif" par="Spongebob is upset with Mr. Krabs. It seems that Mr. Krabs is accusing Squidward of stealing his first dime. I sure hope he finds it."></my-card>
+</div>
+
+  <script>
+    document.querySelector('.duplicate').addEventListener('click', function(event) {
+
+      console.log("this running?")
+      const cards = document.querySelectorAll('my-card');
+      if (cards.length > 0 && cards.length < 10) {
+        const lastCard = cards[cards.length - 1];
+        const newCard = lastCard.cloneNode(true);
+        document.querySelector('#cardlist').appendChild(newCard);
+      }
+    });
+  </script>
 </body>
 
 </html>
