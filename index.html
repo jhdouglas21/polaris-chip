@@ -71,14 +71,70 @@
 
   <script>
     document.querySelector('.duplicate').addEventListener('click', function(event) {
-
-      console.log("this running?")
       const cards = document.querySelectorAll('my-card');
       if (cards.length > 0 && cards.length < 10) {
         const lastCard = cards[cards.length - 1];
         const newCard = lastCard.cloneNode(true);
         document.querySelector('#cardlist').appendChild(newCard);
       }
+    });
+
+    document.querySelector('#delete').addEventListener('click', function(e) {
+      const cards = document.querySelectorAll('my-card');
+      const lastCard = cards[cards.length - 1];
+    
+      if (cards.length !== 1) {
+        lastCard.remove();
+      }
+    });
+
+    document.querySelector('#changetitle').addEventListener('click', function(e) {
+      // Selecting the first 'my-card' element
+      const myCard = document.querySelector('my-card');
+
+      // Accessing shadow DOM
+      const shadowRoot = myCard.shadowRoot;
+
+      // Selecting elements inside shadow DOM
+      const cardTitle = shadowRoot.querySelector('.card-title');
+      const cardHeader = shadowRoot.querySelector('.card-header');
+      const cardDescription = shadowRoot.querySelector('.card-details');
+
+      // Replacing elements
+      cardTitle.textContent = "Oh Boy";
+      cardHeader.textContent = "Stare Down";
+      cardDescription.textContent = "This is very intenese. I wonder what the problem was.";
+    });
+
+    document.querySelector('#changeimage').addEventListener('click', function(e) {
+      // Selecting the first 'my-card' element
+      const myCard = document.querySelector('my-card');
+
+      // Accessing shadow DOM
+      const shadowRoot = myCard.shadowRoot;
+
+      // Selecting element inside shadow DOM
+      const cardImage = shadowRoot.querySelector('.card-image');
+
+      // Replacing element
+      cardImage.setAttribute('src', 'https://media.tenor.com/bxZa559RJvIAAAAM/staring-press.gif');
+    });
+
+    document.querySelector('#changebg').addEventListener('click', function (e) {
+      // Selecting all 'my-card' elements
+      const myCards = document.querySelectorAll('my-card');
+      
+      myCards.forEach(myCard => {
+        console.log("this running?")
+        // Accessing shadow DOM
+        const shadowRoot = myCard.shadowRoot;
+        // Selecting all '.card' elements inside shadow DOM
+        const cards = shadowRoot.querySelectorAll('.card');
+
+        cards.forEach(card => {
+          card.classList.toggle('change-color');
+        });
+      });
     });
   </script>
 </body>

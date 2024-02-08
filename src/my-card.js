@@ -26,25 +26,30 @@ export class MyCard extends LitElement {
       :host {
         display: block;
       }
+
+      .change-color {
+        background-color: #70707047;
+      }
     `;
   }
 
+
   render() {
     return html`
-      <div id="cardlist">
-    <div class="card">
-      <div class="card-header">
-        <h2>${this.header}</h2>
-      </div>
-      <img class="card-image" alt="Card Image" src="${this.imageSrc}"/>
-      <div class="card-text">
-        <h3 class="card-title">${this.title}</h3>
-        <div class="card-details">
-          <p>${this.par}</p>
+    <div id="cardlist">
+      <div class="card">
+        <div class="card-header">
+          <h2>${this.header}</h2>
+        </div>
+        <img class="card-image" alt="Card Image" src="${this.imageSrc}"/>
+        <div class="card-text">
+          <h3 class="card-title">${this.title}</h3>
+          <div class="card-details">
+            <p>${this.par}</p>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
+      </div>
       <div>${this.title}</div>`;
   }
 
