@@ -19,6 +19,7 @@ export class MyCard extends LitElement {
     this.header = "The Header";
     this.imageSrc = "default-image.jpg";
     this.par = "A paragraph with words";
+    this.fancy = false;
   }
 
   static get styles() {
@@ -27,12 +28,28 @@ export class MyCard extends LitElement {
         display: block;
       }
 
+      :host([fancy]) {
+        display: block;
+        background-color: pink;
+        border: 2px solid fuchsia;
+        box-shadow: 10px 5px 5px red;
+      }
+
       .change-color {
-        background-color: #70707047;
+        background-color: white;
       }
     `;
   }
 
+  openChanged(e) {
+    console.log(e.newState);
+    if (e.newState === "open") {
+      this.fancy = true;
+    }
+    else {
+      this.fancy = false;
+    }
+  }
 
   render() {
     return html`
@@ -45,12 +62,18 @@ export class MyCard extends LitElement {
         <div class="card-text">
           <h3 class="card-title">${this.title}</h3>
           <div class="card-details">
-            <p>${this.par}</p>
+          <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+              <summary>Description</summary>
+              <div>
+                <slot>${this.par}</slot>
+              </div>
+            </details>
+            <button><a href="https://hax.psu.edu/login.php" target="_blank">Details</a></button>
           </div>
         </div>
       </div>
-      </div>
-      <div>${this.title}</div>`;
+    </div>
+    `;
   }
 
   static get properties() {
@@ -59,6 +82,7 @@ export class MyCard extends LitElement {
       title: { type: String },
       imageSrc: { type: String },
       par: {type: String},
+      fancy: { type: Boolean, reflect: true },
     };
   }
 }
