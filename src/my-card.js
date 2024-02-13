@@ -62,7 +62,7 @@ export class MyCard extends LitElement {
           <h2>${this.header}</h2>
         </div>
        <!-- <img class="card-image" alt="Card Image" src="${this.imageSrc}"/> -->
-       <meme-maker alt="Cat stalking a small toy" image-url="${this.imageSrc}" top-text="${this.topText}" bottom-text="${this.bottomText}">
+       <meme-maker class="card-image" alt="Cat stalking a small toy" image-url="${this.imageSrc}" top-text="${this.topText}" bottom-text="${this.bottomText}">
        </meme-maker>
         <div class="card-text">
           <h3 class="card-title">${this.title}</h3>
