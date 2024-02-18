@@ -29,6 +29,15 @@
       width: 500px;
     }
 
+    counter-app {
+      width: 200px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      margin: 20px;
+    }
+
     my-card {
       display: block;
       background-color: var(--card-background);
@@ -70,6 +79,7 @@
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+  <script type="module" src="./src/counter-app.js"></script>
 
   <h1>The Card Assignment</h1>
 
@@ -89,6 +99,11 @@
   <my-card header="He kinda chill though" title="Hard Gif of Woody" style="--card-background: blue; --card-title-color: orange;" par="I don't think this is in the toy story movie. However, woody is chilling." imageSrc="https://media1.tenor.com/m/hbgP1XRYo1UAAAAC/bornskywalker-dap-me-up.gif"></my-card>
   <my-card header="Creature" title="This animal is up to no good" style="--card-background: pink; --card-title-color: aquamarine;" imageSrc ="https://media.tenor.com/UpuNwwksW6kAAAAM/bigfoot-jinx-jinx.gif" par="This is Jinx, a very mischevious cat. She seems to not like hair bands."></my-card>
   <my-card header="Anger" title="Spongebob and The Dime" style="--card-background: purple; --card-title-color: white;" imageSrc ="https://media.tenor.com/0wB7gjRtyxAAAAAM/spongebob-mr-krabs.gif" par="Spongebob is upset with Mr. Krabs. It seems that Mr. Krabs is accusing Squidward of stealing his first dime. I sure hope he finds it."></my-card>
+</div>
+
+<div id="counterList">
+<counter-app counter="16" min="10" max="25"></counter-app>
+<counter-app counter="12" min="2" max="29"></counter-app>
 </div>
 
   <script>
