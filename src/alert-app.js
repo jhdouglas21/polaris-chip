@@ -8,15 +8,17 @@ export class AlertApp extends LitElement {
     
     constructor() {
         super();
-        
+        this.message = "";
+        this.date="";
+        this.time="";
     }
     
     render() {
         return html`
             <div class ="alert-card">
                 <div class="date-time">
-                    <p>February, 2, 2024</p>
-                    <p>12:00 AM</p>
+                    <p>${this.date}</p>
+                    <p>${this.time}</p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 82" class="alert-icon">
                                     <g transform="translate(-350.099 -428.714)">
@@ -31,8 +33,8 @@ export class AlertApp extends LitElement {
                         <div class="alert-text">
                             
                                 <span class="alert-message">
-                                    <div class="clearfix text-formatted field field--name-message field--type-text-long field--label-hidden field__item">
-                                        <p>This is a default alert.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <div class="text">
+                                        <p>${this.message}</p>
                                     </div>
                                 </span>
                         </div>
@@ -49,8 +51,12 @@ export class AlertApp extends LitElement {
             display: block;
         }
 
+        :root {
+            --card-background: green;
+        }
+
         .alert-card {
-            background: orange;
+            background: var(--card-background);
             border: 2px solid black;
         }
 
@@ -58,7 +64,6 @@ export class AlertApp extends LitElement {
             -webkit-box-flex: 0;
             flex: 0 0 68px;
             height: 3.35rem;
-            position: relative;
             display: block;
             padding: 1% 0.5rem 1% 1rem;
             top: 0rem;
@@ -71,7 +76,9 @@ export class AlertApp extends LitElement {
 
     static get properties() {
         return {
-            
+            message: { type: String },
+            date: {type: String},
+            time: {type: String},
         }
     }
 }
