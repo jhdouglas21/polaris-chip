@@ -51,6 +51,13 @@ export class AlertApp extends LitElement {
             display: block;
         }
 
+        :host([sticky])
+        {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
         :root {
             --card-background: green;
         }
