@@ -4,6 +4,9 @@ import "@lrnwebcomponents/rpg-character/rpg-character.js";
 
 export class HaxCmsPartyUi extends DDD {
 
+    static get tag() {
+        return 'haxcms-party-ui';
+      }
 
     static properties = {
         items: { type: Array },
@@ -19,6 +22,25 @@ export class HaxCmsPartyUi extends DDD {
           background-color: orange;
           padding: 16px;
         }
+
+        .character-card {
+          background: blue;
+          border: 2px black;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding: 10px;
+        }
+    
+        .item-container {
+            display: flex;
+            overflow-x: auto;
+        }
+
       `;
     
       constructor() {
@@ -36,6 +58,7 @@ export class HaxCmsPartyUi extends DDD {
           content: "Some content of some kind",
           coolness: 7
         }
+        
         console.log(item);
         // push by itself is not a mutating operation
         this.items.push(item);
@@ -68,17 +91,23 @@ export class HaxCmsPartyUi extends DDD {
     
       render() {
         return html`
-         <div>
-          <button @click="${this.addItem}">Add item</button>
-         </div>
-         <div>
-            ${this.items.map((item) => html`
-              <my-item title="${item.title}" @click="${this.targetClicked}" data-id="${item.id}">
-              ${item.content}
-              <strong>${item.coolness}</strong>
-              </my-item>
-            `)}
-          </div>
+         <div class="character-card">
+            <div class="character-card-header">
+                <h2>Character Creation</h2>
+            </div>
+            <div class="controls">
+                <button @click="${this.addItem}">Add item</button>
+                <button>Update</button>
+            </div>
+            <div class="item-container">
+                ${this.items.map((item) => html`
+                    <div class="item" title="${item.title}" @click="${this.targetClicked}" data-id="${item.id}">
+                        ${item.content}
+                        <strong>${item.coolness}</strong>
+                    </div>
+                `)}
+            </div>
+      </div>
         `;
     }
 }
