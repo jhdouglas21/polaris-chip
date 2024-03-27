@@ -28,6 +28,8 @@ export class HaxCmsPartyUi extends DDD {
           border: 2px black;
         }
 
+
+
         .controls {
             display: flex;
             justify-content: space-between;
@@ -36,9 +38,15 @@ export class HaxCmsPartyUi extends DDD {
             padding: 10px;
         }
     
-        .item-container {
+        .character-list {
             display: flex;
             overflow-x: auto;
+        }
+
+        .character-name {
+          position: relative;
+          left: 40%;
+          
         }
 
       `;
@@ -56,7 +64,7 @@ export class HaxCmsPartyUi extends DDD {
           id: randomNumber,
           title: "Cool",
           content: "Some content of some kind",
-          coolness: 7
+         
         }
         
         console.log(item);
@@ -97,13 +105,20 @@ export class HaxCmsPartyUi extends DDD {
             </div>
             <div class="controls">
                 <button @click="${this.addItem}">Add item</button>
+                <button>Delete</button>
                 <button>Update</button>
             </div>
-            <div class="item-container">
+            <input
+              type="text"
+              class="character-name"
+              placeholder="Username"
+            />
+            <div class="character-list">
                 ${this.items.map((item) => html`
                     <div class="item" title="${item.title}" @click="${this.targetClicked}" data-id="${item.id}">
                         ${item.content}
-                        <strong>${item.coolness}</strong>
+                        
+                        <rpg-character></rpg-character>
                     </div>
                 `)}
             </div>
