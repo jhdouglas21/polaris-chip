@@ -10,7 +10,15 @@ export class HaxCmsPartyUi extends DDD {
 
     static properties = {
         items: { type: Array },
-        username: { type: String } 
+        username: { type: String },
+        usernameValid: {type: Boolean},
+    }
+
+    constructor() {
+        super();
+        this.items = [];
+        this.username = ''; 
+        this.usernameValid = true;
     }
 
     static styles = css`
@@ -42,26 +50,39 @@ export class HaxCmsPartyUi extends DDD {
         }
     `;
 
-    constructor() {
-        super();
-        this.items = [];
-        this.username = ''; // Initialize username
-    }
-
     addItem() {
-        const randomNumber = globalThis.crypto.getRandomValues(new Uint32Array(1))[0];
-
-        const item = {
-            id: randomNumber,
-            username: this.username 
+        if (this.usernameValid) {
+            const randomNumber = globalThis.crypto.getRandomValues(new Uint32Array(1))[0];
+            const usernameExists = this.items.some(item => item.username === this.username);
+    
+            if (!usernameExists) 
+            {
+                const item = {
+                    id: randomNumber,
+                    username: this.username 
+                }
+                this.items.push(item);
+                this.requestUpdate();
+            } 
+            else 
+            {
+                alert("Username already exists. Please choose a different username.");
+            }
+        } 
+        else 
+        {
+            alert("Please fix the username error before adding an item.");
         }
-
-        this.items.push(item);
-        this.requestUpdate();
     }
 
     handleUsernameInput(e) {
-        this.username = e.target.value; 
+        const username = e.target.value.trim(); 
+        const validUsername = /^[a-zA-Z0-9]{1,10}$/.test(username); 
+        this.usernameValid = validUsername; 
+        if (validUsername) 
+        {
+            this.username = username;
+        }
     }
 
     targetClicked(e) {
@@ -69,6 +90,11 @@ export class HaxCmsPartyUi extends DDD {
             return item.id === parseInt(e.target.closest('.item').getAttribute('data-id'));
         });
         console.log(this.items[index]);
+    }
+
+    deleteItem(id) {
+        this.items = this.items.filter(item => item.id !== id);
+        this.requestUpdate();
     }
 
     render() {
@@ -79,7 +105,7 @@ export class HaxCmsPartyUi extends DDD {
                 </div>
                 <div class="controls">
                     <button @click="${this.addItem}">Add item</button>
-                    <button>Delete</button>
+                    
                     <button>Update</button>
                 </div>
                 <input
@@ -88,11 +114,13 @@ export class HaxCmsPartyUi extends DDD {
                     placeholder="Username"
                     @input="${this.handleUsernameInput}" 
                 />
+                ${!this.usernameValid ? html`<div style="color: red;">Username should be no longer than 10 characters and should not contain special characters.</div>` : ''}
                 <div class="character-list">
                     ${this.items.map((item) => html`
-                        <div class="item" title="${item.title}" @click="${this.targetClicked}" data-id="${item.id}">
+                        <div class="item" title="${item.title}" data-id="${item.id}">
                             ${item.content}  ${item.username} 
                             <rpg-character></rpg-character>
+                            <button @click="${() => this.deleteItem(item.id)}">Delete</button>
                         </div>
                     `)}
                 </div>
