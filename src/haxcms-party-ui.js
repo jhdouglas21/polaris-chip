@@ -28,25 +28,39 @@ export class HaxCmsPartyUi extends DDD {
 
         .character-card {
             background: blue;
-            border: 2px black;
+            border-radius: 15px; 
+            height: 425px;
         }
 
         .controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            justify-content: center;
             margin-bottom: 16px;
             padding: 10px;
         }
 
+        .item {
+            border: 3px solid black; 
+            border-radius: 25px; 
+            background-color: grey;
+            margin-bottom: 15px; 
+            padding: 10px; 
+        }
+
+        .username {
+            margin-bottom: 5px;
+        }
+
         .character-list {
             display: flex;
-            overflow-x: auto;
+            overflow-x: auto; 
         }
 
         .character-name {
             position: relative;
-            left: 40%;
+            left: 37.6%;
         }
     `;
 
@@ -62,6 +76,7 @@ export class HaxCmsPartyUi extends DDD {
                     username: this.username 
                 }
                 this.items.push(item);
+                this.makeItRain();
                 this.requestUpdate();
             } 
             else 
@@ -99,14 +114,13 @@ export class HaxCmsPartyUi extends DDD {
 
     render() {
         return html`
+        <confetti-container id="confetti">
             <div class="character-card">
                 <div class="character-card-header">
                     <h2>Character Creation</h2>
                 </div>
                 <div class="controls">
-                    <button @click="${this.addItem}">Add item</button>
-                    
-                    <button>Update</button>
+                    <button class="add" @click="${this.addItem}">Add Character</button>
                 </div>
                 <input
                     type="text"
@@ -118,15 +132,27 @@ export class HaxCmsPartyUi extends DDD {
                 <div class="character-list">
                     ${this.items.map((item) => html`
                         <div class="item" title="${item.title}" data-id="${item.id}">
-                            ${item.content}  ${item.username} 
-                            <rpg-character></rpg-character>
-                            <button @click="${() => this.deleteItem(item.id)}">Delete</button>
+                        <rpg-character></rpg-character>
+                        <div class="username">${item.username}</div>
+                        ${item.content}
+                        <button @click="${() => this.deleteItem(item.id)}">Delete</button>
                         </div>
                     `)}
                 </div>
             </div>
+            </confetti-container>
         `;
     }
+
+    makeItRain() {
+        import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
+          (module) => {
+            setTimeout(() => {
+              this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
+            }, 0);
+          }
+        );
+      }
 }
 
 customElements.define(HaxCmsPartyUi.tag, HaxCmsPartyUi);
