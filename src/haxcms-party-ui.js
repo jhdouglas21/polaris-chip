@@ -27,9 +27,9 @@ export class HaxCmsPartyUi extends DDD {
         }
 
         .character-card {
-            background: blue;
+            background: var(--ddd-theme-default-potentialMidnight);
             border-radius: 15px; 
-            height: 425px;
+            height: 445px;
         }
 
         .controls {
@@ -39,6 +39,24 @@ export class HaxCmsPartyUi extends DDD {
             justify-content: center;
             margin-bottom: 16px;
             padding: 10px;
+        }
+
+        .add {
+        background-color: var(--ddd-theme-default-original87Pink);
+        color: white; 
+        border: var(--ddd-border-md); 
+        padding: 10px 20px;
+        border-radius: 5px; 
+        cursor: pointer; 
+        }
+
+        .delete {
+        background-color: var(--ddd-theme-default-original87Pink);
+        color: white; 
+        border: var(--ddd-border-md); 
+        padding: 4px 8px;
+        border-radius: 5px; 
+        cursor: pointer; 
         }
 
         .item {
@@ -61,6 +79,11 @@ export class HaxCmsPartyUi extends DDD {
         .character-name {
             position: relative;
             left: 37.6%;
+        }
+
+        .character-card-header {
+            color: white !important;
+            padding: 10px;
         }
     `;
 
@@ -135,7 +158,7 @@ export class HaxCmsPartyUi extends DDD {
                         <rpg-character></rpg-character>
                         <div class="username">${item.username}</div>
                         ${item.content}
-                        <button @click="${() => this.deleteItem(item.id)}">Delete</button>
+                        <button class="delete" @click="${() => this.deleteItem(item.id)}">Delete</button>
                         </div>
                     `)}
                 </div>
