@@ -29,7 +29,7 @@ export class HaxCmsPartyUi extends DDD {
         .character-card {
             background: var(--ddd-theme-default-potentialMidnight);
             border-radius: 15px; 
-            height: 445px;
+            height: 600px;
         }
 
         .controls {
@@ -41,7 +41,20 @@ export class HaxCmsPartyUi extends DDD {
             padding: 10px;
         }
 
+        .controls button {
+            margin-right: 10px;
+        }
+
         .add {
+        background-color: var(--ddd-theme-default-original87Pink);
+        color: white; 
+        border: var(--ddd-border-md); 
+        padding: 10px 20px;
+        border-radius: 5px; 
+        cursor: pointer; 
+        }
+
+        .save {
         background-color: var(--ddd-theme-default-original87Pink);
         color: white; 
         border: var(--ddd-border-md); 
@@ -99,7 +112,6 @@ export class HaxCmsPartyUi extends DDD {
                     username: this.username 
                 }
                 this.items.push(item);
-                this.makeItRain();
                 this.requestUpdate();
             } 
             else 
@@ -111,6 +123,17 @@ export class HaxCmsPartyUi extends DDD {
         {
             alert("Please fix the username error before adding an item.");
         }
+    }
+
+    saveMembers() {
+        this.makeItRain();
+        
+        alert("Success! Members saved to party.");
+        console.log("Array of names:", this.items.map(item => item.username).join(", "));
+
+        setTimeout(() => {
+            confetti.clear();
+        }, 3000); 
     }
 
     handleUsernameInput(e) {
@@ -144,6 +167,7 @@ export class HaxCmsPartyUi extends DDD {
                 </div>
                 <div class="controls">
                     <button class="add" @click="${this.addItem}">Add Character</button>
+                    <button class="save" @click="${this.saveMembers}">Save Members to Party</button>
                 </div>
                 <input
                     type="text"
